@@ -89,7 +89,14 @@ def call_claude(
 
 
 def parse_json_response(text: str) -> dict:
-    """Parse JSON from Claude response, stripping markdown fences if present."""
+    """Parse JSON from Claude response, stripping markdown fences if present.
+    
+    Handles common Claude issues:
+    - ```json ... ``` wrappers
+    - Unescaped control characters inside JSON strings (newlines, tabs)
+    """
+    import re
+
     cleaned = text.strip()
 
     # Strip ```json ... ``` wrappers
@@ -101,8 +108,27 @@ def parse_json_response(text: str) -> dict:
 
     cleaned = cleaned.strip()
 
+    # First try: strict=False tolerates control chars in many Python versions
     try:
-        return json.loads(cleaned)
+        return json.loads(cleaned, strict=False)
+    except json.JSONDecodeError:
+        pass
+
+    # Second try: sanitize control characters inside JSON string values
+    # Replace raw control chars (except \n \r \t which we escape properly)
+    def _sanitize(s: str) -> str:
+        # Replace literal control chars that aren't already escaped
+        s = s.replace('\r\n', '\\n').replace('\r', '\\n').replace('\t', '\\t')
+        # Remove any remaining control chars (0x00-0x1F) except already-escaped ones
+        s = re.sub(r'(?<!\\)[\x00-\x08\x0b\x0c\x0e-\x1f]', '', s)
+        # Fix unescaped newlines inside JSON strings
+        # This regex finds strings and escapes newlines within them
+        s = re.sub(r'(?<=": ")(.*?)(?="[,}\]])', lambda m: m.group(0).replace('\n', '\\n'), s, flags=re.DOTALL)
+        return s
+
+    try:
+        sanitized = _sanitize(cleaned)
+        return json.loads(sanitized, strict=False)
     except json.JSONDecodeError as exc:
         logger.error("Failed to parse JSON from Claude response: %s", exc)
         logger.debug("Raw response:\n%s", text[:500])
