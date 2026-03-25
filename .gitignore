@@ -1,0 +1,23 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+
+# Env
+.env
+.env.local
+
+# Outputs
+outputs/
+*.xlsx
+
+# IDE
+.vscode/
+.idea/
+
+# Vercel
+.vercel/
+
+# Lock files
+uv.lock

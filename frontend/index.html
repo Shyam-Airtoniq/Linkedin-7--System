@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>🚀 90-Day LinkedIn Complete System</title>
+  <meta name="description" content="Generate your customized 90-Day LinkedIn Complete System with AI" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="bgParticles" class="bg-particles"></div>
+
+  <main class="container">
+    <!-- Header -->
+    <header class="header">
+      <div class="badge">🚀 COMPLETE SYSTEM — $199 Tier</div>
+      <h1>90-Day LinkedIn<br /><span class="gradient-text">Complete System</span></h1>
+      <p class="subtitle">
+        AI-powered: 25 headlines, 90-day calendar, 50 hooks, 8 outreach templates,
+        15 objection scripts, day-by-day plan & more.
+      </p>
+    </header>
+
+    <!-- Sheets Preview -->
+    <section id="sheetsPreview" class="sheets-preview">
+      <h2>📊 What You'll Get (11 Sheets)</h2>
+      <div class="sheets-grid">
+        <div class="sheet-card"><span class="sheet-num">0</span> Strategic Foundation</div>
+        <div class="sheet-card"><span class="sheet-num">1</span> Master Dashboard</div>
+        <div class="sheet-card"><span class="sheet-num">2</span> Profile (25 Headlines)</div>
+        <div class="sheet-card"><span class="sheet-num">3</span> 90-Day Calendar (36 Posts)</div>
+        <div class="sheet-card"><span class="sheet-num">4</span> Outreach (8 CR + 6 DM)</div>
+        <div class="sheet-card"><span class="sheet-num">5</span> Sales (15 Objections)</div>
+        <div class="sheet-card"><span class="sheet-num">6</span> Lead Magnet (10 Formats)</div>
+        <div class="sheet-card"><span class="sheet-num">7</span> Content Engine (30 Topics)</div>
+        <div class="sheet-card"><span class="sheet-num">8</span> Implementation (Day-by-Day)</div>
+        <div class="sheet-card"><span class="sheet-num">9</span> Analytics & A/B Testing</div>
+        <div class="sheet-card highlight"><span class="sheet-num">10</span> Upgrade → Done-With-You</div>
+      </div>
+    </section>
+
+    <!-- Form -->
+    <section class="form-section">
+      <form id="generateForm">
+        <div class="form-group">
+          <label for="businessName">Business Name</label>
+          <input type="text" id="businessName" placeholder="e.g. 9Gravity Digital Marketing" />
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="userName">Your Name <span class="required">*</span></label>
+            <input type="text" id="userName" required placeholder="e.g. Shyam" />
+          </div>
+          <div class="form-group">
+            <label for="userEmail">Your Email <span class="required">*</span></label>
+            <input type="email" id="userEmail" required placeholder="e.g. shyam@9gravity.io" />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="linkedinStatus">Current LinkedIn Status <span class="required">*</span></label>
+          <select id="linkedinStatus" required>
+            <option value="">— Select —</option>
+            <option value="Starting from scratch">Starting from scratch</option>
+            <option value="Have some presence">Have some presence</option>
+            <option value="Established but inconsistent">Established but inconsistent</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="services">Describe Your Services <span class="required">*</span></label>
+          <textarea id="services" rows="5" required minlength="20"
+            placeholder="Tell us what you do, who you serve, and what makes you different. The more detail, the better the output. (min 20 characters)"></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="targetIndustry">Target Industry <span class="optional">(optional)</span></label>
+          <input type="text" id="targetIndustry" placeholder="e.g. B2B SaaS, Real Estate, Legal" />
+        </div>
+
+        <div class="form-group">
+          <label for="additionalContext">Additional Context <span class="optional">(optional)</span></label>
+          <textarea id="additionalContext" rows="3"
+            placeholder="Any specific goals, competitors, or details you'd like the AI to consider"></textarea>
+        </div>
+
+        <button type="submit" id="btnGenerate" class="btn-primary">
+          <span class="btn-text">🚀 Generate Complete System</span>
+          <span class="btn-loading">Generating…</span>
+        </button>
+      </form>
+    </section>
+
+    <!-- Progress -->
+    <section id="progressCard" class="card progress-card hidden">
+      <h2>⚡ Generating Your Complete System</h2>
+      <div class="progress-wrapper">
+        <div class="progress-track">
+          <div id="progressBar" class="progress-fill"></div>
+        </div>
+        <span id="progressPercent" class="progress-pct">0%</span>
+      </div>
+      <p id="progressStep" class="progress-label">Initializing…</p>
+      <p id="timeEstimate" class="time-estimate">⏱️ ~4 minutes remaining</p>
+      <div id="stepList" class="step-list"></div>
+    </section>
+
+    <!-- Result -->
+    <section id="resultCard" class="card result-card hidden">
+      <div class="success-icon">✅</div>
+      <h2>Your Complete System is Ready!</h2>
+      <p>All 11 sheets generated — download your customized Excel file below.</p>
+      <button id="btnDownload" class="btn-primary download-btn">📥 Download Excel File</button>
+      <button id="btnNewGeneration" class="btn-secondary">Generate Another</button>
+    </section>
+
+    <!-- Error -->
+    <section id="errorCard" class="card error-card hidden">
+      <div class="error-icon">❌</div>
+      <h2>Something Went Wrong</h2>
+      <p id="errorMessage">An error occurred. Please try again.</p>
+      <button id="btnRetry" class="btn-secondary">Try Again</button>
+    </section>
+
+    <!-- Insights Preview -->
+    <section id="insightsSection" class="insights-section hidden">
+      <h2>🔍 AI Insights Preview</h2>
+      <div class="insights-grid">
+        <div class="insight-card">
+          <h3>🎯 Ideal Client Profiles</h3>
+          <div id="insightICP"></div>
+        </div>
+        <div class="insight-card">
+          <h3>💰 Pricing Strategy</h3>
+          <div id="insightPricing"></div>
+        </div>
+        <div class="insight-card">
+          <h3>⚡ Positioning</h3>
+          <div id="insightPositioning"></div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <p>Powered by Claude AI · 9Gravity · Complete System ($199 Tier)</p>
+    </footer>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>

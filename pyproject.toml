@@ -1,0 +1,17 @@
+[project]
+name = "linkedin-complete-system"
+version = "1.0.0"
+description = "90-Day LinkedIn Complete System ($199) — AI-powered outreach kit with expanded content"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "anthropic>=0.83.0",
+    "fastapi>=0.129.0",
+    "httpx>=0.28.1",
+    "openpyxl>=3.1.5",
+    "pydantic>=2.12.5",
+    "python-dotenv>=1.2.1",
+    "python-multipart>=0.0.22",
+    "streamlit>=1.54.0",
+    "uvicorn>=0.41.0",
+]
